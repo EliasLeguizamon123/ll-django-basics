@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ note.title }}</title>
+</head>
+<body>
+    <h1>{{ note.title }}</h1>
+    <p>{{ note.text }}</p>
+    <p>ID: {{ note.pk }}</p>
+    <p>Created: {{ note.created }}</p>
+    <p>Likes: {{ note.likes }}</p>
+    
+    {% if not note %}
+        <p style="color: red;">Error: Note not found!</p>
+    {% endif %}
+</body>
+</html>
