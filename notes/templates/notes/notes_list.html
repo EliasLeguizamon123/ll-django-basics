@@ -1,9 +1,17 @@
-<html>
+{% extends "base.html" %}
+
+{% block content %}
+<div class="centered-view">
     <h1>These are the popular notes only:</h1>
 
-    <ul>
+    <ul class="notes-ul">
         {% for note in notes %}
-            <li>{{note.title}}</li>
-            {% endfor %}
+            <li class="note-li">
+                <a href="{% url 'notes.name' pk=note.id %}" class="note-link">{{ note.title }}</a>
+            </li>
+        {% endfor %}
     </ul>
-</html>
+</div>
+
+<a href="{% url 'notes.new' %}" class="fab" title="Add new note">＋</a>
+{% endblock %}

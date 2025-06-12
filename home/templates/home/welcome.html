@@ -1,11 +1,11 @@
-<html>
-    <header>
-        <title>
-            SmartNotes!
-        </title>
-    </header>
-    <body>
-        <H1>Welcome to smartNotes</H1>
-        <p>Today is {{today}}</p>
-    </body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+<div class="centered-view">
+    <h1>Welcome to smartNotes</h1>
+    <p>Today is {{ today }}</p>
+    <a href="{% url 'notes.list'%}" class="btn">Check out these smart notes!</a>
+
+    {% include "./advantages.html" %}
+</div>
+{% endblock %}
