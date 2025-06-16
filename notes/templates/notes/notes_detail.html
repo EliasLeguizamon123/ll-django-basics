@@ -1,15 +1,43 @@
 {% extends "base.html" %}
 
 {% block content %}
-    
-    <h1>{{ note.title }}</h1>
-    <p>{{ note.text }}</p>
-    <p>ID: {{ note.pk }}</p>
-    <p>Created: {{ note.created }}</p>
-    <p>Likes: {{ note.likes }}</p>
-    
-    {% if not note %}
-        <p style="color: red;">Error: Note not found!</p>
-    {% endif %}
+    <div style="text-align: center; max-width: 600px; margin: auto; padding: 2rem; border: 1px solid #ccc; border-radius: 10px;">
+        {% if not note %}
+            <p style="color: red;">Error: Note not found!</p>
+        {% else %}
+            <h1>
+                {{ note.title }}
+                <span class="badge {% if note.public %}badge-public{% else %}badge-private{% endif %}">
+                    {% if note.public %}Pública{% else %}Privada{% endif %}
+                </span>
+            </h1>
+            <p>{{ note.text }}</p>
+            <p><strong>ID:</strong> {{ note.pk }}</p>
+            <p><strong>Created:</strong> {{ note.created }}</p>
+            <p><strong>Likes:</strong> {{ note.likes }}</p>
 
+            <div style="margin-top: 2rem;">
+                <a href="{% url 'notes.update' note.pk %}" style="padding: 0.5rem 1rem; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; margin: 0.5rem;">Editar</a>
+
+                <a href="{% url 'notes.delete' note.pk %}" style="padding: 0.5rem 1rem; background-color: #dc3545; color: white; text-decoration: none; border-radius: 5px; margin: 0.5rem;">Eliminar</a>
+
+                <form method="POST" action="{% url 'notes.like' note.pk %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" style="padding: 0.5rem 1rem; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                        👍 Like
+                    </button>
+                </form>
+                <form method="POST" action="{% url 'notes.change_visibility' note.pk %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" style="padding: 0.5rem 1rem; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                        {%if note.public %}
+                            Make it private
+                        {% else %}
+                            Make it public
+                        {% endif %}
+                    </button>
+                </form>
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}
