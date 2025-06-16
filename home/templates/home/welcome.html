@@ -4,7 +4,12 @@
 <div class="centered-view">
     <h1>Welcome to smartNotes</h1>
     <p>Today is {{ today }}</p>
-    <a href="{% url 'notes.list'%}" class="btn">Check out these smart notes!</a>
+    <a href="{% url 'notes.list' %}" class="btn">Check out these smart notes!</a>
+    
+    <!-- Botón para registrarse -->
+    <a href="{% url 'register' %}" class="btn">
+        Register
+    </a>
 
     {% include "./advantages.html" %}
 </div>

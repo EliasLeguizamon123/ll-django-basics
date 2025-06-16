@@ -129,3 +129,11 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = '/smart/notes'
+
+LOGIN_URL = '/login'
+
+LOGIN_REDIRECT_URL = '/home'           # A dónde ir después de loguearse
+
+LOGOUT_REDIRECT_URL = '/login'         # A dónde ir después de desloguearse

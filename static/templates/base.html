@@ -12,7 +12,15 @@
 <body>
     <header>
         <nav class="navbar">
-            <h1 class="site-title">SmartNotes</h1>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h1 class="site-title">SmartNotes</h1>
+                {% if request.user.is_authenticated %}
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn">Cerrar sesión</button>
+                    </form>
+                {% endif %}
+            </div>
         </nav>
     </header>
     <main class="main-content">
